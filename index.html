@@ -4,21 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>CollabSpace AI | Project Management & AI Chat Platform</title>
+    <title>CollabSpace AI | The Intelligent Workspace</title>
     <meta name="description" content="The all-in-one AI project management platform. Replace Jira and Slack with CollabSpace. Features real-time chat, AI automation, and Kanban boards.">
     <meta name="keywords" content="AI project management software, free jira alternative, real-time team chat, AI workflow automation, kanban board with chat, CollabSpace AI">
     <meta name="author" content="CollabSpace AI Inc.">
-    
     <meta name="google-site-verification" content="UAcT1VCPOXhEsFVsNS_GrpDTRlipxR6XRL_XPe_c3Y0" />
-    <link rel="preload" href="Gemini1.png" as="image">
-    
-    <link rel="canonical" href="https://collabspace-ai.up.railway.app/">
+    <link rel="canonical" href="https://collabspace-ai.vercel.app/">
 
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://collabspace-ai.up.railway.app/">
+    <meta property="og:url" content="https://collabspace-ai.vercel.app">
     <meta property="og:title" content="CollabSpace AI | The New Standard for Team Productivity">
     <meta property="og:description" content="Stop paying for Jira and Slack. Get AI-powered project management and chat in one app.">
-    <meta property="og:image" content="https://collabspace-ai.up.railway.app/Gemini1.png"> 
+    <meta property="og:image" content="https://collabspace-ai.vercel.app/Gemini1.webp"> 
     <meta property="og:site_name" content="CollabSpace AI">
 
     <script type="application/ld+json">
@@ -33,30 +30,28 @@
         "price": "0",
         "priceCurrency": "USD"
       },
-      "description": "CollabSpace AI is a project management tool combining real-time chat, AI automation, and task tracking.",
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.8",
-        "ratingCount": "120"
-      }
+      "description": "CollabSpace AI is a project management tool combining real-time chat, AI automation, and task tracking."
     }
     </script>
 
-    <link rel="icon" href="Gemini.png" type="image/png">
-    
+    <link rel="icon" href="Gemini.webp" type="image/png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
-        /* --- CSS VARIABLES & RESET --- */
         :root {
             /* --- BRAND IDENTITY (Teal) --- */
-            --brand-primary: #0d9488;        /* Teal 600 */
-            --brand-primary-hover: #0f766e;  /* Teal 700 */
-            --brand-primary-light: #14b8a6;  /* Teal 500 */
-            --brand-primary-dark: #115e59;   /* Teal 800 */
+            --brand-primary: #0d9488;       /* Teal 600 */
+            --brand-primary-hover: #0f766e; /* Teal 700 */
+            --brand-primary-light: #14b8a6; /* Teal 500 */
+            --brand-primary-dark: #115e59;  /* Teal 800 */
             
-            --brand-surface: #f0fdfa;        /* Teal 50 */
-            --brand-border: #ccfbf1;         /* Teal 100 */
-            --brand-gradient: linear-gradient(135deg, #0d9488 0%, #115e59 100%);
-
+            --brand-surface: #f0fdfa;       /* Teal 50 */
+            --brand-border: #ccfbf1;        /* Teal 100 */
+            
             /* --- Neutrals --- */
             --bg-app: #f8fafc;
             --bg-card: #ffffff;
@@ -64,576 +59,664 @@
             --text-muted: #64748b;
             --border-light: #e2e8f0;
 
-            /* --- Effects --- */
-            --glass-bg: rgba(255, 255, 255, 0.85);
-            --glass-border: rgba(255, 255, 255, 0.5);
-            --glass-shadow: 0 8px 32px 0 rgba(13, 148, 136, 0.08);
-            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            /* --- Glassmorphism --- */
+            --glass-bg: rgba(255, 255, 255, 0.7);
+            --glass-border: 1px solid rgba(255, 255, 255, 0.6);
+            --glass-shadow: 0 8px 32px 0 rgba(13, 148, 136, 0.1); 
+            
+            /* --- Semantic Colors --- */
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --success: #10b981;
 
-            --radius: 12px;
-            --font-main: system-ui, -apple-system, sans-serif;
+            /* --- Derived & Helpers --- */
+            --gradient-text: linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-primary-light) 100%);
+            --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
         }
 
-        html { scroll-behavior: smooth; }
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+
+        html { 
+            scroll-behavior: smooth; 
+        }
+
         body {
-            font-family: var(--font-main);
-            color: var(--text-main);
-            line-height: 1.6;
             background-color: var(--bg-app);
-            overflow-x: hidden;
-        }
-
-        a { text-decoration: none; color: inherit; transition: 0.2s; }
-        ul { list-style: none; }
-
-        /* --- UTILITIES --- */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .section-padding { padding: 100px 0; }
-        .text-center { text-align: center; }
-        
-        /* Gradient Text */
-        .text-gradient {
-            background: var(--brand-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            display: inline-block;
-        }
-
-        /* --- BUTTONS (Global) --- */
-        .btn {
-            display: inline-block;
-            padding: 14px 28px;
-            border-radius: 50px;
-            font-weight: 600;
-            cursor: pointer;
-            text-align: center;
-            transition: all 0.1s ease; /* Fast transition for press effect */
-            box-shadow: var(--shadow-sm);
-            position: relative;
-            top: 0;
-        }
-
-        .btn-primary { 
-            background: var(--brand-gradient); 
-            color: white; 
-            border: 1px solid transparent;
-        }
-        .btn-primary:hover { 
-            filter: brightness(110%);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .btn-outline { 
-            background: white;
-            border: 2px solid var(--brand-border); 
-            color: var(--brand-primary); 
-        }
-        .btn-outline:hover { 
-            border-color: var(--brand-primary); 
-            background: var(--brand-surface);
-            color: var(--brand-primary-dark);
-        }
-        
-        /* --- 3D BUTTON STYLES (Hero Specific) --- */
-        .btn-lg {
-            padding: 16px 36px;
-            font-size: 1.1rem;
-        }
-
-        /* 3D White Button */
-        .btn-light {
-            background: white;
-            color: var(--brand-primary-dark);
-            border-bottom: 4px solid #cbd5e1; /* Thickness */
-            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-        }
-        .btn-light:active {
-            top: 4px; /* Move down */
-            border-bottom: 0px solid #cbd5e1; /* Remove thickness */
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.1); /* Inner shadow */
-        }
-        .btn-light:hover {
-            transform: translateY(-1px);
-        }
-
-        /* 3D Glass Button */
-        .btn-glass {
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            border-bottom: 4px solid rgba(255, 255, 255, 0.3); /* Thickness */
-            color: white;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-        }
-        .btn-glass:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-1px);
-        }
-        .btn-glass:active {
-            top: 4px;
-            border-bottom: 0px solid transparent;
-        }
-
-        /* --- HEADER --- */
-        header {
-            position: sticky;
-            top: 0;
-            background: var(--glass-bg);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--glass-border);
-            z-index: 1000;
-            padding: 18px 0;
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo { 
-            font-size: 1.5rem; 
-            font-weight: 800; 
-            letter-spacing: -0.5px; 
-            display: flex;
-            align-items: center;
-            gap: 12px;
             color: var(--text-main);
-        }
-        .logo img { height: 32px; width: auto; }
-        .logo span { color: var(--brand-primary); }
-
-        .nav-links { display: flex; gap: 32px; align-items: center; font-weight: 500; }
-        .nav-links a:hover:not(.btn) { color: var(--brand-primary); }
-
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 15% 15%, rgba(13, 148, 136, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 85% 85%, rgba(20, 184, 166, 0.1) 0%, transparent 40%);
         }
 
-        /* --- HERO SECTION --- */
-        .hero {
-            /* Full height minus header */
-            min-height: 85vh; 
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            text-align: center;
-            color: white;
-            
-            /* BACKGROUND IMAGE SETUP */
-            background-image: url('Gemini1.png');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            
-            border-radius: 0 0 30px 30px;
-            margin-bottom: 60px;
-        }
-
-        /* Dark Overlay for Text Readability */
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            /* Gradient: Teal to Dark Blue opacity */
-            background: linear-gradient(135deg, rgba(13, 148, 136, 0.85), rgba(15, 23, 42, 0.85));
-            z-index: 1;
-            border-radius: 0 0 30px 30px;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 900px;
-            padding: 0 20px;
-            animation: fadeIn 1s ease-out;
-        }
-
-        /* 3D HEADER STYLE */
-        .hero-content h1 {
-            /* Reduced size as requested */
-            font-size: clamp(2.2rem, 5vw, 3.5rem); 
-            line-height: 1.1;
-            margin-bottom: 24px;
-            font-weight: 800;
-            letter-spacing: -1px;
-            
-            /* 3D Shadow Stack */
-            text-shadow: 
-                0 1px 0 #334155,
-                0 2px 0 #1e293b,
-                0 3px 0 #0f172a,
-                0 6px 12px rgba(0,0,0,0.5);
-        }
-
-        /* 3D PARAGRAPH STYLE */
-        .hero-content p {
-            font-size: 1.25rem;
-            color: rgba(255, 255, 255, 0.95);
-            margin-bottom: 40px;
-            max-width: 650px;
-            margin-left: auto;
-            margin-right: auto;
-            font-weight: 500;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.6);
-        }
-
-        .hero-btns { 
-            display: flex; 
-            gap: 20px; 
-            justify-content: center;
-            flex-wrap: wrap; 
-        }
-
-        /* 3D TRUST BADGE */
-        .trust-badges {
-            margin-top: 48px;
-            font-size: 0.9rem;
-            color: white;
-            background: rgba(0, 0, 0, 0.3);
-            padding: 8px 20px;
-            border-radius: 50px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            
-            /* 3D Floating look */
-            box-shadow: 
-                0 4px 6px rgba(0,0,0,0.2),
-                inset 0 1px 1px rgba(255,255,255,0.1);
-            border: 1px solid rgba(255,255,255,0.1);
-            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
-        }
-        
-        .trust-badges strong { color: #86efac; } /* Bright green text */
-
-        @keyframes fadeIn {
+        /* --- Animations --- */
+        @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* --- FEATURES --- */
-        .features { background: white; }
-        
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 60px;
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
         }
 
-        .feature-card {
-            padding: 40px 30px;
-            border-radius: 16px;
-            background: var(--bg-app);
-            border: 1px solid transparent;
-            transition: all 0.3s ease;
-        }
-        .feature-card:hover {
-            background: white;
-            box-shadow: var(--shadow-lg);
-            border-color: var(--brand-border);
-            transform: translateY(-5px);
+        @keyframes glowPulse {
+            0% { box-shadow: 0 0 0 rgba(13, 148, 136, 0.4); }
+            50% { box-shadow: 0 0 20px rgba(13, 148, 136, 0.4); }
+            100% { box-shadow: 0 0 0 rgba(13, 148, 136, 0.4); }
         }
 
-        .feature-icon-wrapper {
-            width: 60px;
-            height: 60px;
-            background: var(--brand-surface);
-            border-radius: 14px;
+        /* --- Navigation --- */
+        nav {
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            margin-bottom: 24px;
-            color: var(--brand-primary);
+            padding: 1.2rem 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: #ffffff; 
+            border-bottom: 1px solid var(--border-light);
         }
 
-        .feature-card h3 { font-size: 1.25rem; margin-bottom: 12px; }
-        .feature-card p { color: var(--text-muted); font-size: 1rem; }
+        .logo-link { text-decoration: none; display: flex; align-items: center; gap: 10px; }
+        .logo-img { height: 32px; width: auto; }
+        .logo-text { font-size: 1.5rem; font-weight: 800; color: var(--text-main); letter-spacing: -0.5px; }
+        .logo-text span { color: var(--brand-primary); }
 
-        /* --- PRICING --- */
-        .pricing-section { background: var(--bg-app); }
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 60px;
+        .nav-links { display: flex; gap: 2rem; align-items: center; }
+
+        .nav-links a:not(.cta-btn) {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 0.95rem;
         }
 
-        .pricing-card {
+        .nav-links a:not(.cta-btn):hover { color: var(--brand-primary); }
+
+        .cta-btn {
+            background: var(--brand-primary);
+            color: white;
+            padding: 0.7rem 1.4rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+            box-shadow: 0 4px 6px rgba(13, 148, 136, 0.2);
+            white-space: nowrap;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            background: var(--brand-primary-hover);
+            box-shadow: 0 8px 12px rgba(13, 148, 136, 0.3);
+        }
+
+        .cta-btn.secondary {
             background: white;
-            padding: 40px;
-            border-radius: 20px;
+            color: var(--text-main);
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-card);
+        }
+
+        .cta-btn.secondary:hover {
+            border-color: var(--brand-primary-light);
+            color: var(--brand-primary);
+            background: var(--brand-surface);
+        }
+
+        .mobile-menu-btn { display: none; font-size: 1.5rem; cursor: pointer; color: var(--text-main); }
+
+        /* --- Hero Section Styles --- */
+        .badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.15); 
+            color: white; 
+            border-color: rgba(255,255,255,0.3); 
+            backdrop-filter: blur(4px);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--brand-border);
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero-text-section {
+            position: relative;
+            background-image: url('Gemini1.webp'); 
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            padding: 10rem 5% 6rem;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(13, 148, 136, 0.85));
+            z-index: 1;
+        }
+
+        .hero-content-wrapper {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-text-section h1 { color: white; margin-bottom: 1.5rem; font-size: 3.5rem; font-weight: 800; line-height: 1.2; animation: fadeInUp 0.8s ease-out 0.2s backwards; }
+        .hero-text-section p { color: rgba(255, 255, 255, 0.9); font-size: 1.25rem; margin-bottom: 2.5rem; line-height: 1.6; animation: fadeInUp 0.8s ease-out 0.4s backwards; }
+        .hero-text-section span { color: #5eead4; }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 4rem;
+            animation: fadeInUp 0.8s ease-out 0.6s backwards;
+        }
+
+        .hero-text-section .cta-btn.secondary { background: transparent; color: white; border-color: white; }
+        .hero-text-section .cta-btn.secondary:hover { background: white; color: var(--brand-primary-dark); }
+
+        /* --- Visual Section --- */
+        .hero-visual-section {
+            padding: 4rem 5% 6rem;
+            background: var(--brand-surface);
+            border-bottom: 1px solid var(--border-light);
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-image-link {
+            width: 100%;
+            max-width: 1000px;
+            display: block;
+            text-decoration: none;
+        }
+
+        .hero-visual {
+            width: 100%;
+            min-height: 500px;
+            background: linear-gradient(180deg, #ffffff 0%, #f1f5f9 100%);
+            border-radius: 24px;
             border: 1px solid var(--border-light);
             position: relative;
-            transition: 0.3s;
-        }
-
-        .pricing-card.popular {
-            border: 2px solid var(--brand-primary);
-            box-shadow: var(--shadow-lg);
-            transform: scale(1.02);
-        }
-
-        .pricing-header { margin-bottom: 30px; }
-        .price { font-size: 3.5rem; font-weight: 800; color: var(--text-main); letter-spacing: -2px; }
-        .price span { font-size: 1.1rem; color: var(--text-muted); font-weight: 500; letter-spacing: 0; }
-        
-        .feature-check {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 16px;
-            font-size: 0.95rem;
-        }
-        .check-icon { 
-            color: white; 
-            background: var(--success); 
-            width: 20px; 
-            height: 20px; 
-            border-radius: 50%; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            font-size: 12px; 
-        }
-
-        /* --- CTA --- */
-        .cta-section {
-            background: var(--text-main);
-            color: white;
-            text-align: center;
-            position: relative;
             overflow: hidden;
+            box-shadow: var(--glass-shadow), 0 20px 40px -10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            animation: float 6s ease-in-out infinite;
+            display: flex;
         }
+
+        .hero-visual:hover { border-color: var(--brand-primary-light); }
+
+        /* Mockup Internals */
+        .sidebar-mock { width: 60px; background: #ffffff; border-right: 1px solid #e2e8f0; display: flex; flex-direction: column; align-items: center; padding: 16px 0; gap: 20px; }
+        .main-mock { flex: 1; padding: 24px; display: flex; flex-direction: column; gap: 24px; position: relative; background: white; }
+        .header-mock { display: flex; justify-content: space-between; align-items: center; }
+        .grid-mock { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+        .card-mock { background: white; padding: 24px; border-radius: 12px; border: 1px solid #e2e8f0; }
         
-        .cta-section::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: radial-gradient(circle at center, var(--brand-primary-dark) 0%, transparent 70%);
-            opacity: 0.4;
+        .ai-float {
+            position: absolute; bottom: 24px; right: 24px; background: var(--brand-primary); color: white; padding: 12px 24px; border-radius: 30px; display: flex; align-items: center; gap: 8px; font-weight: 600; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
+        .ai-icon-pulse { color: var(--brand-primary); animation: glowPulse 2s infinite; font-size: 1.5rem; }
 
-        .cta-content { position: relative; z-index: 2; }
+        /* --- Stats --- */
+        .stats-container { display: flex; justify-content: center; gap: 5rem; padding: 3rem 0; border-top: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light); background: var(--brand-surface); flex-wrap: wrap; }
+        .stat-item { text-align: center; }
+        .stat-number { font-size: 2.5rem; font-weight: 800; color: var(--brand-primary-dark); display: block; margin-bottom: 0.2rem; }
+        .stat-label { color: var(--text-muted); font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* --- FOOTER --- */
-        footer {
-            background: white;
-            padding: 80px 0 40px;
-            border-top: 1px solid var(--border-light);
-            font-size: 0.95rem;
+        /* --- General Section Styles --- */
+        .features, .how-it-works, .pricing-section { padding: 6rem 5%; max-width: 1200px; margin: 0 auto; }
+        .section-header { text-align: center; margin-bottom: 4rem; }
+        .section-header h2 { font-size: 2.5rem; margin-bottom: 1rem; color: var(--text-main); font-weight: 700; }
+
+        /* --- Features Grid --- */
+        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; }
+        .feature-card {
+            background: var(--bg-card); border: 1px solid var(--border-light); padding: 2.5rem; border-radius: 16px; transition: all 0.3s ease; position: relative; overflow: hidden; box-shadow: var(--shadow-card);
         }
+        .feature-card::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 5px; background: var(--brand-primary); transform: scaleX(0); transform-origin: left; transition: transform 0.3s ease;
+        }
+        .feature-card:hover { transform: translateY(-5px); border-color: var(--brand-border); box-shadow: 0 10px 25px -5px rgba(13, 148, 136, 0.1); }
+        .feature-card:hover::before { transform: scaleX(1); }
+
+        .icon-box {
+            width: 54px; height: 54px; background: var(--brand-surface); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: var(--brand-primary); margin-bottom: 1.5rem; border: 1px solid var(--brand-border);
+        }
+        .feature-card h3 { font-size: 1.25rem; margin-bottom: 0.75rem; color: var(--text-main); font-weight: 700; }
+        .feature-card p { color: var(--text-muted); line-height: 1.6; font-size: 0.95rem; }
+
+        /* --- How It Works --- */
+        .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
+        .step-card { text-align: center; padding: 2rem; }
+        .step-number {
+            width: 40px; height: 40px; background: var(--brand-primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin: 0 auto 1.5rem; font-size: 1.1rem;
+        }
+        .step-card h3 { font-size: 1.25rem; margin-bottom: 0.5rem; color: var(--text-main); }
+        .step-card p { color: var(--text-muted); font-size: 0.95rem; }
+        .step-arrow { display: block; margin: 0 auto; color: var(--border-light); font-size: 1.5rem; transform: rotate(90deg); margin-top: 1rem; }
         
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 60px;
-            margin-bottom: 60px;
+        @media(min-width: 900px) {
+            .step-arrow { transform: rotate(0deg); margin-top: 0; margin-bottom: 0; }
+            .steps-wrapper { display: flex; align-items: center; justify-content: space-between; }
         }
 
-        .footer-brand p { color: var(--text-muted); margin-top: 16px; max-width: 250px; }
-        .footer-col h4 { font-weight: 700; margin-bottom: 24px; color: var(--text-main); }
-        .footer-col ul li { margin-bottom: 14px; }
-        .footer-col a { color: var(--text-muted); transition: 0.2s; }
-        .footer-col a:hover { color: var(--brand-primary); }
-
-        .footer-bottom {
-            padding-top: 40px;
-            border-top: 1px solid var(--border-light);
-            text-align: center;
-            color: var(--text-muted);
-            font-size: 0.85rem;
+        /* --- Pricing Grid (Now Used for Core Features) --- */
+        /* Retaining original classes for layout consistency */
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; align-items: stretch; }
+        .pricing-card {
+            background: white; border: 1px solid var(--border-light); border-radius: 16px; padding: 2.5rem; text-align: center; transition: 0.3s;
+            display: flex; flex-direction: column; justify-content: space-between; overflow: hidden;
         }
+        .pricing-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-card); border-color: var(--brand-border); }
+        
+        .pricing-card.popular {
+            border: 2px solid var(--brand-primary); box-shadow: 0 10px 30px rgba(13, 148, 136, 0.1); transform: scale(1.05); position: relative; z-index: 10;
+        }
+        .pricing-card.popular:hover { transform: scale(1.05) translateY(-5px); }
 
+        .price-tag { font-size: 2rem; font-weight: 800; color: var(--text-main); margin: 1.5rem 0; letter-spacing: -0.5px; }
+        .price-tag span { font-size: 1rem; color: var(--text-muted); font-weight: 400; letter-spacing: 0; }
+        
+        .pricing-features { text-align: left; margin: 2rem 0; }
+        .pricing-features li { list-style: none; margin-bottom: 0.8rem; font-size: 0.95rem; color: var(--text-muted); display: flex; gap: 10px; }
+        .pricing-features li i { color: var(--success); }
+
+        /* --- Value Prop (Dark Section) --- */
+        .value-prop { background: linear-gradient(135deg, var(--brand-primary-dark), #0f172a); padding: 6rem 5%; text-align: center; position: relative; overflow: hidden; }
+        .value-prop::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: radial-gradient(circle at 50% 50%, rgba(20, 184, 166, 0.1) 0%, transparent 50%); pointer-events: none; }
+
+        .comparison-container { max-width: 1000px; margin: 3rem auto 0; display: grid; grid-template-columns: 1fr 1.5fr; gap: 3rem; align-items: center; position: relative; z-index: 2; }
+        .competitor-list { text-align: left; color: #cbd5e1; }
+        .competitor-list h3 { color: white; margin-bottom: 1rem; }
+        .competitor-list li { list-style: none; margin-bottom: 1rem; padding-left: 1.5rem; position: relative; }
+        .competitor-list li::before { content: '✕'; color: var(--danger); position: absolute; left: 0; font-weight: bold; }
+
+        .collab-card { background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); padding: 3rem; border-radius: 24px; text-align: left; box-shadow: 0 20px 50px rgba(0,0,0,0.2); }
+        .collab-card h3 { font-size: 1.8rem; margin-bottom: 1.5rem; color: white; font-weight: 700; }
+        .check-list li { list-style: none; margin-bottom: 1rem; padding-left: 2rem; position: relative; font-size: 1.1rem; color: #f1f5f9; }
+        .check-list li::before { content: '\f00c'; font-family: "Font Awesome 6 Free"; font-weight: 900; color: var(--success); position: absolute; left: 0; top: 2px; }
+
+        /* --- Footer --- */
+        .cta-footer { padding: 8rem 5%; text-align: center; background: linear-gradient(180deg, var(--bg-app) 0%, var(--brand-surface) 100%); border-top: 1px solid var(--border-light); }
+        .cta-footer h2 { font-size: 3rem; margin-bottom: 1rem; color: var(--text-main); letter-spacing: -1px; font-weight: 800; }
+        footer { padding: 2.5rem 5%; text-align: center; color: var(--text-muted); font-size: 0.9rem; border-top: 1px solid var(--border-light); background: white; }
+
+        /* --- Responsive & Mobile Fixes --- */
         @media (max-width: 900px) {
-            .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
-        }
-        @media (max-width: 480px) {
-            .footer-grid { grid-template-columns: 1fr; text-align: center; }
-            .footer-brand { margin-bottom: 40px; }
+            .hero-text-section { padding-top: 8rem; }
+            .hero h1 { font-size: 2.5rem; }
+            
+            /* Toggle Menu */
+            .mobile-menu-btn { display: block; }
+            .nav-links { 
+                display: none; 
+                position: absolute; top: 70px; left: 0; width: 100%; 
+                background: white; flex-direction: column; 
+                align-items: center; padding: 2rem 0; 
+                border-bottom: 1px solid var(--border-light); 
+                gap: 1.5rem; box-shadow: 0 10px 10px rgba(0,0,0,0.05); 
+            }
+            .nav-links.active { display: flex; }
+            .nav-links .cta-btn { width: 80%; text-align: center; }
+            
+            /* Hero Visual / Mockup Responsiveness */
+            .hero-visual { 
+                height: auto !important; 
+                flex-direction: column !important; 
+                overflow: visible !important;
+            }
+            
+            .sidebar-mock { display: none !important; }
+            .main-mock { width: 100% !important; padding: 16px !important; }
+            .grid-mock { grid-template-columns: 1fr !important; gap: 16px !important; }
+            .card-mock:nth-child(3), .card-mock:nth-child(4) { display: none !important; }
+            .header-mock { flex-direction: column; align-items: flex-start !important; gap: 15px; }
+            .header-mock > div { width: 100%; justify-content: space-between; }
+            
+            .stats-container { gap: 2rem; flex-direction: column; }
+            .comparison-container { grid-template-columns: 1fr; }
+            .pricing-card.popular { transform: none; }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="container">
-            <nav>
-                <a href="#" class="logo">
-                    <img src="Gemini.png" alt="CollabSpace AI Logo">
-                    CollabSpace<span>AI</span>
-                </a>
-                <div class="nav-links">
-                    <a href="#features">Features</a>
-                    <a href="#pricing">Pricing</a>
-                    <a href="#community">Community</a>
-                    <a href="https://collabspace-ai.up.railway.app" class="btn btn-primary">Get Started</a>
-                </div>
-            </nav>
+    <nav>
+        <a href="#hero" class="logo-link">
+            <img src="Gemini.webp" alt="CollabSpace AI Logo" class="logo-img">
+            <div class="logo-text">CollabSpace<span>AI</span></div>
+        </a>
+        
+        <div class="mobile-menu-btn"><i class="fa-solid fa-bars"></i></div>
+
+        <div class="nav-links">
+            <a href="#features">Features</a>
+            <a href="hiw">Workflow</a>
+            <a href="#core-engines">Core Engines</a>
+            <a href="https://collabspace-ai.vercel.app">Demo</a>
+            <a href="https://collabspace-ai.up.railway.app" class="cta-btn">Sign Up Free</a>
+        </div>
+    </nav>
+
+    <header class="hero-text-section" id="hero">
+        <div class="hero-overlay"></div>
+        
+        <div class="hero-content-wrapper">
+            <h1>The All-In-One Workspace <br> Powered by <span>Intelligence</span></h1>
+            <p>
+                Stop switching between Notion, Jira, and Slack. 
+                CollabSpace AI unifies tasks, docs, messaging, and projects into a single, 
+                AI-driven platform.
+            </p>
+            
+            <div class="hero-buttons">
+                <a href="https://collabspace-ai.up.railway.app" class="cta-btn">Get Started</a>
+                <a href="https://collabspace-ai.vercel.app" class="cta-btn secondary">View Demo</a>
+            </div>
         </div>
     </header>
 
-    <section class="hero">
-        <div class="hero-content">
-            <h1>The OS for <br>High-Growth Teams</h1>
-            
-            <p>Combine project management, real-time chat, and automated workflows into one unified platform. Stop switching apps and start shipping.</p>
-            
-            <div class="hero-btns">
-                <a href="https://collabspace-ai.up.railway.app" class="btn btn-light btn-lg">Start Free Trial</a>
-                <a href="#features" class="btn btn-glass btn-lg">How it works</a>
-            </div>
+    <section class="hero-visual-section">
+        <a href="https://collabspace-ai.up.railway.app" class="hero-image-link" style="display: block; text-decoration: none;">
+            <div class="hero-visual" style="background-color: #f8fafc; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1); display: flex; height: 600px;">
+                <div class="sidebar-mock" style="width: 60px; background: #ffffff; border-right: 1px solid #e2e8f0; display: flex; flex-direction: column; align-items: center; padding: 16px 0; gap: 20px;">
+                    <div style="width: 36px; height: 36px; background: var(--brand-primary); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 18px;">C</div>
+                    <i class="fa-solid fa-border-all" style="color: var(--brand-primary); font-size: 18px;"></i>
+                    <i class="fa-solid fa-list-check" style="color: #94a3b8; font-size: 18px;"></i>
+                    <i class="fa-solid fa-wand-magic-sparkles" style="color: #94a3b8; font-size: 18px;"></i>
+                    <i class="fa-solid fa-robot" style="color: #94a3b8; font-size: 18px;"></i>
+                    <i class="fa-solid fa-border-none" style="color: #94a3b8; font-size: 18px;"></i>
+                    <i class="fa-solid fa-chart-line" style="color: #94a3b8; font-size: 18px;"></i>
+                    <i class="fa-solid fa-folder" style="color: #94a3b8; font-size: 18px;"></i>
+                    <i class="fa-regular fa-comment" style="color: #94a3b8; font-size: 18px;"></i>
+                    <i class="fa-solid fa-briefcase" style="color: #94a3b8; font-size: 18px;"></i>
+                    <div style="margin-top: auto; display: flex; flex-direction: column; gap: 20px; align-items: center;">
+                        <i class="fa-solid fa-puzzle-piece" style="color: #94a3b8; font-size: 18px;"></i>
+                        <i class="fa-solid fa-gear" style="color: #94a3b8; font-size: 18px;"></i>
+                    </div>
+                </div>
 
-            <div class="trust-badges">
-                Operational Status: <strong>All Systems Normal</strong>
+                <div class="main-mock" style="flex: 1; padding: 24px; display: flex; flex-direction: column; gap: 24px; position: relative;">
+                    <div class="header-mock" style="display: flex; justify-content: space-between; align-items: center;">
+                        <div style="display: flex; align-items: center; gap: 16px;">
+                            <span style="font-size: 18px; font-weight: 700; color: #0f172a;">CollabSpace <span style="color: var(--brand-primary);">AI</span></span>
+                            <div style="padding: 6px 12px; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 14px; color: #64748b; display: flex; align-items: center; gap: 8px;">
+                                Workspace <i class="fa-solid fa-chevron-down" style="font-size: 12px;"></i>
+                            </div>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 16px;">
+                            <div style="background: #f1f5f9; padding: 8px 16px; border-radius: 6px; display: flex; align-items: center; gap: 8px; color: #94a3b8; font-size: 14px; width: 250px;">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                                <span style="flex: 1;">Search...</span>
+                                <span style="font-size: 12px; border: 1px solid #e2e8f0; padding: 2px 4px; border-radius: 4px;">⌘K</span>
+                            </div>
+                            <i class="fa-regular fa-bell" style="color: #94a3b8; font-size: 18px;"></i>
+                            <div style="width: 32px; height: 32px; background: #e2e8f0; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; color: #64748b;">E</div>
+                        </div>
+                    </div>
+
+                    <div style="background: linear-gradient(135deg, #115e59 0%, #0d9488 100%); padding: 32px; border-radius: 16px; color: white; display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <h2 style="font-size: 24px; font-weight: 700; margin-bottom: 8px;">Good afternoon, User</h2>
+                            <p style="font-size: 14px; opacity: 0.9;">You have <strong>0 tasks</strong> pending for completion.</p>
+                        </div>
+                        <div style="text-align: right;">
+                            <div style="font-size: 12px; font-weight: 600; opacity: 0.8; margin-bottom: 4px;">MY PROGRESS</div>
+                            <div style="font-size: 18px; font-weight: 700;">0 / 0 Done</div>
+                        </div>
+                    </div>
+
+                    <div class="grid-mock" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;">
+                        <div class="card-mock" style="background: white; padding: 24px; border-radius: 12px; border: 1px solid #e2e8f0;">
+                            <div style="width: 40px; height: 40px; background: #dcfce7; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #10b981; font-size: 20px; margin-bottom: 16px;"><i class="fa-solid fa-check"></i></div>
+                            <div style="font-size: 32px; font-weight: 700; color: #0f172a; margin-bottom: 4px;">2</div>
+                            <div style="font-size: 14px; font-weight: 600; color: #64748b;">TASKS</div>
+                        </div>
+                        <div class="card-mock" style="background: white; padding: 24px; border-radius: 12px; border: 1px solid #e2e8f0; position: relative;">
+                            <div style="width: 40px; height: 40px; background: #dbeafe; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #3b82f6; font-size: 20px; margin-bottom: 16px;"><i class="fa-regular fa-folder"></i></div>
+                            <div style="font-size: 32px; font-weight: 700; color: #0f172a; margin-bottom: 4px;">1</div>
+                            <div style="font-size: 14px; font-weight: 600; color: #64748b;">ACTIVE PROJECTS</div>
+                            <div style="position: absolute; top: 24px; right: 24px; background: #dcfce7; color: #10b981; padding: 4px 8px; border-radius: 20px; font-size: 12px; font-weight: 700;">+1</div>
+                        </div>
+                        <div class="card-mock" style="background: white; padding: 24px; border-radius: 12px; border: 1px solid #e2e8f0;">
+                            <div style="width: 40px; height: 40px; background: #ffedd5; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #f97316; font-size: 20px; margin-bottom: 16px;"><i class="fa-regular fa-comment-dots"></i></div>
+                            <div style="font-size: 32px; font-weight: 700; color: #0f172a; margin-bottom: 4px;">0</div>
+                            <div style="font-size: 14px; font-weight: 600; color: #64748b;">UNREAD MESSAGES</div>
+                        </div>
+                        <div class="card-mock" style="background: white; padding: 24px; border-radius: 12px; border: 1px solid #e2e8f0;">
+                            <div style="width: 40px; height: 40px; background: #ede9fe; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #8b5cf6; font-size: 20px; margin-bottom: 16px;"><i class="fa-regular fa-clock"></i></div>
+                            <div style="font-size: 32px; font-weight: 700; color: #0f172a; margin-bottom: 4px;">0h</div>
+                            <div style="font-size: 14px; font-weight: 600; color: #64748b;">HOURS TRACKED</div>
+                        </div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+                        <div style="background: white; padding: 24px; border-radius: 12px; border: 1px solid #e2e8f0;">
+                            <h3 style="font-size: 16px; font-weight: 700; color: #0f172a;">My Tasks</h3>
+                        </div>
+                        <div style="background: white; padding: 24px; border-radius: 12px; border: 1px solid #e2e8f0;">
+                            <h3 style="font-size: 16px; font-weight: 700; color: #0f172a;">Recent Projects</h3>
+                        </div>
+                    </div>
+                    
+                    <div class="ai-float" style="position: absolute; bottom: 24px; right: 24px; background: var(--brand-primary); color: white; padding: 12px 24px; border-radius: 30px; display: flex; align-items: center; gap: 8px; font-weight: 600; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        AI Assistant
+                        <i class="fa-solid fa-chevron-up" style="font-size: 12px;"></i>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </section>
+
+    <section class="stats-container">
+        <div class="stat-item">
+            <span class="stat-number">6</span>
+            <span class="stat-label">Tools Replaced</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-number">90%</span>
+            <span class="stat-label">Faster Setup</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-number">24/7</span>
+            <span class="stat-label">AI Assistance</span>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <div class="section-header">
+            <h2>Everything you need. <br> <span style="color: var(--brand-primary);">Nothing you don't.</span></h2>
+            <p style="color: var(--text-muted);">V1.0 includes all core collaboration features, fully secure and scalable.</p>
+        </div>
+
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="icon-box"><i class="fa-solid fa-shield-halved"></i></div>
+                <h3>Enterprise Security</h3>
+                <p>Secure authentication with JWT, 2FA support, and session management. Your data is encrypted and safe.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon-box"><i class="fa-solid fa-list-check"></i></div>
+                <h3>Advanced Tasks</h3>
+                <p>Switch instantly between Kanban Board, List View, and Calendar. Drag-and-drop your way to productivity.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon-box"><i class="fa-solid fa-comments"></i></div>
+                <h3>Real-Time Chat</h3>
+                <p>Why pay for Slack? Integrated channels, direct messages, and threads right where your work happens.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon-box"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                <h3>AI Assistant</h3>
+                <p>Chat with your data. Generate task summaries, get priority suggestions, and automate administrative work.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon-box"><i class="fa-solid fa-stopwatch"></i></div>
+                <h3>Time & Analytics</h3>
+                <p>Native time tracking per task. Visualize team velocity, burnout risks, and project profitability.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon-box"><i class="fa-solid fa-folder-open"></i></div>
+                <h3>File Management</h3>
+                <p>Drag-and-drop uploads, version control (soon), and global search across every document and image.</p>
             </div>
         </div>
     </section>
 
-    <section id="features" class="section-padding features">
-        <div class="container">
-            <div class="text-center" style="max-width: 700px; margin: 0 auto 60px;">
-                <h2 style="font-size: 2.5rem; margin-bottom: 16px;">Everything you need to scale</h2>
-                <p style="color: var(--text-muted); font-size: 1.1rem;">Powerful enough for engineers, simple enough for everyone else.</p>
+    <section class="how-it-works" id="how-it-works">
+        <div class="section-header">
+            <h2>Workflow Optimized <br> <span style="color: var(--brand-primary);">for Speed</span></h2>
+        </div>
+        <div class="steps-wrapper">
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <h3>Secure & Import</h3>
+                <p>Enterprise-grade JWT auth with 2FA protection. One-click import from Jira or Notion to get started instantly.</p>
             </div>
-
-            <div class="feature-grid">
-                <div class="feature-card">
-                    <div class="feature-icon-wrapper">⚡</div>
-                    <h3>Intelligent Automation</h3>
-                    <p>Leverage our advanced AI engine to summarize meetings, generate action items, and draft email responses instantly.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon-wrapper">🔄</div>
-                    <h3>Real-Time Sync</h3>
-                    <p>Built on WebSockets for instant updates. See tasks move and messages arrive the millisecond they happen.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon-wrapper">📊</div>
-                    <h3>Smart Analytics</h3>
-                    <p>Visual dashboards that track team velocity, project health, and resource allocation automatically.</p>
-                </div>
+            <i class="fa-solid fa-arrow-right step-arrow"></i>
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <h3>Structure & Execute</h3>
+                <p>Define workspaces and projects. Switch between Kanban and Calendar views while tracking time natively.</p>
+            </div>
+            <i class="fa-solid fa-arrow-right step-arrow"></i>
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <h3>Automate & Report</h3>
+                <p>Let AI summarize threads and suggest priorities. View real-time burn rates and velocity analytics.</p>
             </div>
         </div>
     </section>
 
-    <section id="pricing" class="section-padding pricing-section">
-        <div class="container">
-            <div class="text-center" style="max-width: 700px; margin: 0 auto 60px;">
-                <h2 style="font-size: 2.5rem;">Fair pricing for every stage</h2>
+    <section class="pricing-section" id="core-engines">
+        <div class="section-header">
+            <h2>Three Powerful Engines. <br> <span style="color: var(--brand-primary);">One Platform.</span></h2>
+            <p style="color: var(--text-muted);">The distinct feature sets that drive CollabSpace V1.0.</p>
+        </div>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <h3>Management Engine</h3>
+                <div class="price-tag">Tasks</div>
+                <p style="color: var(--text-muted); margin-bottom: 20px;">Complete project control.</p>
+                <ul class="pricing-features">
+                    <li><i class="fa-solid fa-check"></i> <strong>3 Views:</strong> List, Board, Calendar</li>
+                    <li><i class="fa-solid fa-check"></i> <strong>Native Time Tracking</strong></li>
+                    <li><i class="fa-solid fa-check"></i> Subtasks & Checklists</li>
+                </ul>
+                <a href="https://collabspace-ai.up.railway.app" class="cta-btn secondary" style="width: 100%; display: block; margin-top: auto;">Explore Tasks</a>
             </div>
 
-            <div class="pricing-grid">
-                <div class="pricing-card">
-                    <div class="pricing-header">
-                        <h3>Starter</h3>
-                        <div class="price">$0<span>/mo</span></div>
-                    </div>
-                    <ul>
-                        <li class="feature-check"><span class="check-icon">✓</span> 1 Workspace</li>
-                        <li class="feature-check"><span class="check-icon">✓</span> 3 Projects</li>
-                        <li class="feature-check"><span class="check-icon">✓</span> Standard Support</li>
-                    </ul>
-                    <a href="https://collabspace-ai.up.railway.app" class="btn btn-outline" style="width: 100%; margin-top: 24px;">Start Free</a>
-                </div>
+            <div class="pricing-card popular">
+                <div style="position: absolute; top: 0; left: 0; width: 100%; background: var(--brand-primary); color: white; padding: 4px; font-size: 0.8rem; font-weight: 700;">INTELLIGENCE</div>
+                <h3 style="margin-top: 10px;">AI Copilot</h3>
+                <div class="price-tag">Smart</div>
+                <p style="color: var(--text-muted); margin-bottom: 20px;">Automate the busy work.</p>
+                <ul class="pricing-features">
+                    <li><i class="fa-solid fa-check"></i> <strong>Thread Summaries</strong></li>
+                    <li><i class="fa-solid fa-check"></i> Priority Suggestions</li>
+                    <li><i class="fa-solid fa-check"></i> Burnout Detection</li>
+                </ul>
+                <a href="https://collabspace-ai.up.railway.app" class="cta-btn" style="width: 100%; display: block; margin-top: auto;">Try AI Now</a>
+            </div>
 
-                <div class="pricing-card popular">
-                    <div style="position: absolute; top: -15px; right: 20px; background: var(--brand-primary); color: white; padding: 6px 16px; border-radius: 20px; font-size: 0.85rem; font-weight: 700;">POPULAR</div>
-                    <div class="pricing-header">
-                        <h3>Pro Team</h3>
-                        <div class="price">$12<span>/user</span></div>
-                    </div>
-                    <ul>
-                        <li class="feature-check"><span class="check-icon">✓</span> Unlimited Projects</li>
-                        <li class="feature-check"><span class="check-icon">✓</span> <strong>Advanced AI Suite</strong></li>
-                        <li class="feature-check"><span class="check-icon">✓</span> Priority Support</li>
-                    </ul>
-                    <a href="https://collabspace-ai.up.railway.app" class="btn btn-primary" style="width: 100%; margin-top: 24px;">Get Started</a>
-                </div>
-
-                <div class="pricing-card">
-                    <div class="pricing-header">
-                        <h3>Enterprise</h3>
-                        <div class="price">Custom</div>
-                    </div>
-                    <ul>
-                        <li class="feature-check"><span class="check-icon">✓</span> SSO & Audit Logs</li>
-                        <li class="feature-check"><span class="check-icon">✓</span> Dedicated Success Manager</li>
-                        <li class="feature-check"><span class="check-icon">✓</span> Custom Integrations</li>
-                    </ul>
-                    <a href="#contact" class="btn btn-outline" style="width: 100%; margin-top: 24px;">Contact Sales</a>
-                </div>
+            <div class="pricing-card">
+                <h3>Communication Engine</h3>
+                <div class="price-tag">Chat</div>
+                <p style="color: var(--text-muted); margin-bottom: 20px;">Replace Slack entirely.</p>
+                <ul class="pricing-features">
+                    <li><i class="fa-solid fa-check"></i> <strong>Integrated Channels</strong></li>
+                    <li><i class="fa-solid fa-check"></i> Direct Messages & Groups</li>
+                    <li><i class="fa-solid fa-check"></i> File Sharing & Previews</li>
+                </ul>
+                <a href="https://collabspace-ai.up.railway.app" class="cta-btn secondary" style="width: 100%; display: block; margin-top: auto;">Start Chatting</a>
             </div>
         </div>
     </section>
 
-    <section class="cta-section section-padding">
-        <div class="cta-content container">
-            <h2 style="font-size: 3rem; margin-bottom: 24px;">Ready to work smarter?</h2>
-            <p style="font-size: 1.25rem; margin-bottom: 40px; opacity: 0.9;">Join the teams reducing overhead and increasing output.</p>
-            <a href="https://collabspace-ai.up.railway.app" class="btn btn-primary" style="background: white; color: var(--brand-primary-dark); padding: 18px 40px; font-size: 1.1rem;">Launch CollabSpace</a>
+    <section class="value-prop" id="why-us">
+        <h2 style="font-size: 2.5rem; color: white;">Why CollabSpace?</h2>
+        <div class="comparison-container">
+            <div class="competitor-list">
+                <h3>The Old Way</h3>
+                <p style="margin-bottom: 20px; font-size: 0.9rem;">Fragmented tools & subscriptions</p>
+                <ul>
+                    <li>Pay for Notion (Docs)</li>
+                    <li>Pay for Jira (Tasks)</li>
+                    <li>Pay for Slack (Chat)</li>
+                    <li>Context switching kills focus</li>
+                    <li>Disconnected data silos</li>
+                </ul>
+            </div>
+            <div class="collab-card">
+                <h3><i class="fa-solid fa-bolt" style="color: #fbbf24; margin-right: 10px;"></i> The CollabSpace Way</h3>
+                <ul class="check-list">
+                    <li>One platform, one subscription</li>
+                    <li>AI-Native from the ground up</li>
+                    <li>Chat lives alongside your Tasks</li>
+                    <li>Setup in 5 minutes, not weeks</li>
+                    <li>Financial intelligence included</li>
+                </ul>
+            </div>
         </div>
+    </section>
+
+    <section class="cta-footer" id="signup">
+        <h2>Ready to build better?</h2>
+        <p style="color: var(--text-muted); margin-bottom: 2rem; font-size: 1.2rem;">
+            Join the workspace that adapts to you.
+        </p>
+        <a href="https://collabspace-ai.up.railway.app" class="cta-btn" style="padding: 1rem 3rem; font-size: 1.2rem;">Get Started for Free</a>
+        <p style="margin-top: 1rem; font-size: 0.8rem; color: var(--text-muted);">No credit card required for V1.0</p>
     </section>
 
     <footer>
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <a href="#" class="logo">
-                        <img src="Gemini.png" alt="CollabSpace AI Brand Logo">
-                        CollabSpace<span>AI</span>
-                    </a>
-                    <p>The operating system for modern, high-velocity organizations.</p>
-                </div>
-
-                <div class="footer-col">
-                    <h4>Resources</h4>
-                    <ul>
-                        <li><a href="#documentation">Documentation</a></li>
-                        <li><a href="#api">API Reference</a></li>
-                        <li><a href="#community">Community</a></li>
-                        <li><a href="#blog">Blog</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-col">
-                    <h4>Company</h4>
-                    <ul>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#careers">Careers</a></li>
-                        <li><a href="#legal">Legal</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-col">
-                    <h4>Stay Connected</h4>
-                    <p style="color:var(--text-muted); margin-bottom: 15px;">Subscribe to our newsletter for updates.</p>
-                    <div style="display:flex; gap:10px;">
-                        <input type="email" placeholder="Enter email" style="padding: 10px; border: 1px solid var(--border-light); border-radius: 6px; width: 100%;">
-                    </div>
-                </div>
-            </div>
-
-            <div class="footer-bottom">
-                &copy; 2025 CollabSpace AI Inc. All rights reserved.
-            </div>
+        <div style="margin-bottom: 1rem;">
+            <a href="#" style="color: var(--text-muted); margin: 0 10px; text-decoration: none; font-size: 0.85rem;">Privacy Policy</a>
+            <a href="#" style="color: var(--text-muted); margin: 0 10px; text-decoration: none; font-size: 0.85rem;">Terms of Service</a>
         </div>
+        <p>&copy; 2026 CollabSpace AI. All rights reserved.</p>
     </footer>
+
+    <script>
+        const mobileBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = mobileBtn.querySelector('i');
+            if(navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+            } else {
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileBtn.querySelector('i').classList.remove('fa-xmark');
+                mobileBtn.querySelector('i').classList.add('fa-bars');
+            });
+        });
+    </script>
 
 </body>
 </html>

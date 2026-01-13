@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CollabSpace AI - User Guide & Platform</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            /* --- BRAND IDENTITY (Teal) --- */
+            --brand-primary: #0d9488;       /* Teal 600 */
+            --brand-primary-hover: #0f766e; /* Teal 700 */
+            --brand-primary-light: #14b8a6; /* Teal 500 */
+            --brand-primary-dark: #115e59;  /* Teal 800 */
+            
+            --brand-surface: #f0fdfa;       /* Teal 50 */
+            --brand-border: #ccfbf1;        /* Teal 100 */
+            
+            /* --- Neutrals --- */
+            --bg-app: #f8fafc;
+            --bg-card: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --border-light: #e2e8f0;
+
+            /* --- Glassmorphism --- */
+            --glass-bg: rgba(255, 255, 255, 0.7);
+            --glass-border: 1px solid rgba(255, 255, 255, 0.6);
+            --glass-shadow: 0 8px 32px 0 rgba(13, 148, 136, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+        
+        body {
+            background-color: var(--bg-app);
+            color: var(--text-main);
+            background-image: radial-gradient(circle at 15% 15%, rgba(13, 148, 136, 0.05) 0%, transparent 40%),
+                              radial-gradient(circle at 85% 85%, rgba(20, 184, 166, 0.08) 0%, transparent 40%);
+            overflow-x: hidden;
+        }
+
+        /* --- Utilities --- */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 5%; width: 100%; }
+        .text-center { text-align: center; }
+        .text-primary { color: var(--brand-primary); }
+        .btn {
+            display: inline-block; padding: 12px 24px; border-radius: 8px; font-weight: 600;
+            text-decoration: none; transition: all 0.2s; border: none; cursor: pointer;
+            white-space: nowrap;
+        }
+        .btn-primary { background: var(--brand-primary); color: white; box-shadow: 0 4px 6px rgba(13, 148, 136, 0.2); }
+        .btn-primary:hover { background: var(--brand-primary-hover); transform: translateY(-2px); }
+        .btn-outline { background: transparent; border: 1px solid var(--brand-border); color: var(--brand-primary-dark); }
+        .btn-outline:hover { background: var(--brand-surface); border-color: var(--brand-primary); }
+
+        /* --- Navigation --- */
+        nav {
+            display: flex; justify-content: space-between; align-items: center; padding: 1rem 5%;
+            position: fixed; width: 100%; top: 0; z-index: 1000;
+            background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-light);
+        }
+        .logo { font-size: 1.5rem; font-weight: 800; color: var(--text-main); display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .logo-img { height: 32px; width: auto; }
+        
+        .nav-links { display: flex; align-items: center; gap: 2rem; }
+        .nav-links a { text-decoration: none; color: var(--text-muted); font-weight: 500; font-size: 0.95rem; }
+        .nav-links a:hover { color: var(--brand-primary); }
+        
+        .mobile-menu-btn { display: none; font-size: 1.5rem; cursor: pointer; color: var(--text-main); }
+
+        /* --- Hero --- */
+        .hero { padding: 9rem 0 4rem; text-align: center; }
+        .hero h1 { 
+            font-size: clamp(2.5rem, 5vw, 4rem); /* Responsive Font Size */
+            margin-bottom: 1.5rem; 
+            color: var(--text-main); 
+            line-height: 1.1; 
+        }
+        .hero p { font-size: clamp(1rem, 2vw, 1.25rem); color: var(--text-muted); max-width: 600px; margin: 0 auto 2.5rem; padding: 0 10px; }
+
+        /* --- Guide Steps --- */
+        .guide-section { padding: 4rem 0; }
+        .step-container {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; margin-bottom: 6rem;
+        }
+        .step-container.reverse { direction: rtl; } 
+        .step-container.reverse .step-text { direction: ltr; } 
+
+        .step-text { padding: 1rem; }
+        .step-number {
+            font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+            color: var(--brand-primary); margin-bottom: 1rem; display: block;
+        }
+        .step-title { font-size: clamp(1.8rem, 4vw, 2rem); margin-bottom: 1rem; color: var(--text-main); }
+        .step-desc { color: var(--text-muted); font-size: 1.1rem; margin-bottom: 1.5rem; line-height: 1.6; }
+        .step-list { list-style: none; margin-bottom: 2rem; padding: 0; }
+        .step-list li { margin-bottom: 0.8rem; display: flex; align-items: center; gap: 10px; color: var(--text-main); }
+        .step-list li i { color: var(--success); flex-shrink: 0; }
+
+        /* --- Mockups --- */
+        .mockup-frame {
+            background: var(--bg-card); border: 1px solid var(--border-light); border-radius: 16px;
+            padding: 10px; box-shadow: var(--glass-shadow); position: relative; overflow: hidden;
+            transition: transform 0.3s ease; aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center;
+            width: 100%;
+        }
+        .mockup-frame:hover { transform: translateY(-5px); border-color: var(--brand-primary-light); }
+        .mockup-frame img { width: 100%; height: 100%; object-fit: cover; border-radius: 8px; display: block; }
+
+        #ai-assistant-preview { aspect-ratio: auto; height: auto; width: 100%; max-width: 350px; margin: 0 auto; }
+
+        /* --- Features --- */
+        .features { background: var(--brand-surface); padding: 5rem 0; border-top: 1px solid var(--brand-border); }
+        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 3rem; }
+        .feature-card {
+            background: var(--bg-card); padding: 2rem; border-radius: 16px; border: 1px solid var(--border-light);
+            transition: all 0.2s;
+        }
+        .feature-card:hover { border-color: var(--brand-primary); box-shadow: 0 10px 20px rgba(13, 148, 136, 0.1); }
+        .icon-box {
+            width: 48px; height: 48px; background: var(--brand-surface); color: var(--brand-primary);
+            border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; margin-bottom: 1.5rem;
+        }
+
+        /* --- CTA --- */
+        .cta-box {
+            background: linear-gradient(135deg, var(--brand-primary-dark) 0%, #0f172a 100%);
+            border-radius: 24px; padding: 4rem 2rem; text-align: center; color: white;
+            margin: 4rem auto; max-width: 1000px; width: 100%;
+        }
+        
+        /* --- RESPONSIVE MEDIA QUERIES --- */
+        @media (max-width: 900px) {
+            .hero { padding-top: 7rem; }
+            .step-container, .step-container.reverse { 
+                grid-template-columns: 1fr; 
+                direction: ltr; 
+                gap: 2.5rem; 
+                text-align: center; 
+            }
+            .step-container.reverse .step-text { direction: ltr; }
+            .step-list li { justify-content: center; text-align: left; }
+            .step-text { padding: 0; }
+            #ai-assistant-preview { max-width: 100%; }
+        }
+
+        @media (max-width: 768px) {
+            /* Mobile Navigation */
+            .mobile-menu-btn { display: block; }
+            
+            .nav-links { 
+                display: none; /* Hidden by default on mobile */
+                position: absolute; 
+                top: 70px; left: 0; width: 100%; 
+                background: white; 
+                flex-direction: column; 
+                padding: 2rem 0; 
+                border-bottom: 1px solid var(--border-light); 
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            }
+            
+            .nav-links.active { display: flex; } /* JavaScript toggles this class */
+            .nav-links a { margin: 0; padding: 10px 0; font-size: 1.1rem; }
+            
+            /* Typography & Spacing Fixes */
+            .logo { font-size: 1.2rem; }
+            .logo-img { height: 28px; }
+            
+            .hero { padding: 7rem 0 3rem; }
+            .hero-buttons { flex-direction: column; width: 100%; }
+            
+            .feature-grid { grid-template-columns: 1fr; }
+            .cta-box { padding: 3rem 1.5rem; margin: 2rem auto; border-radius: 16px; }
+            .cta-box h2 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index" class="logo">
+            <img src="Gemini.webp" alt="CollabSpace AI Logo" class="logo-img">
+            CollabSpace AI
+        </a>
+        
+        <div class="mobile-menu-btn"><i class="fa-solid fa-bars"></i></div>
+
+        <div class="nav-links">
+            <a href="index">Product</a>
+            <a href="#guide">User Guide</a>
+            <a href="pricing">Pricing</a>
+            <a href="https://collabspace-ai.up.railway.app" class="btn btn-primary" style="margin-top: 10px; display: inline-block; width: auto;">Start Free</a>
+        </div>
+        
+        <a href="https://collabspace-ai.up.railway.app" class="btn btn-primary" style="display: none; @media(min-width: 769px){display:inline-block;}">Start Free</a>
+        <style> @media(min-width: 769px) { nav .btn-primary:last-child { display: inline-block; } nav .nav-links .btn-primary { display: none !important; } } </style>
+    </nav>
+
+    <header class="hero">
+        <div class="container">
+            <h1>Master Your Workflow.<br><span style="color: var(--brand-primary);">Powered by Intelligence.</span></h1>
+            <p>The step-by-step guide to unifying your tasks, documents, and team communication in one intelligent platform.</p>
+            
+            <div style="display:flex; gap:1rem; justify-content:center; flex-wrap: wrap;">
+                <a href="#guide" class="btn btn-primary">See How It Works</a>
+                <a href="https://collabspace-ai.vercel.app" class="btn btn-outline">Watch Demo</a>
+            </div>
+            
+            <div class="mockup-frame" style="margin-top: 4rem; max-width: 900px; margin-left: auto; margin-right: auto;">
+                 <img src="image.png" alt="Dashboard Overview">
+            </div>
+        </div>
+    </header>
+
+    <section id="guide" class="guide-section">
+        <div class="container">
+            <div class="text-center" style="margin-bottom: 5rem;">
+                <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">How to Use CollabSpace</h2>
+                <p style="color: var(--text-muted);">Four simple steps to transform how your team operates.</p>
+            </div>
+
+            <div class="step-container">
+                <div class="step-text">
+                    <span class="step-number">Step 01 — Setup</span>
+                    <h3 class="step-title">Create Your Workspace</h3>
+                    <p class="step-desc">
+                        Start by creating a dedicated environment for your organization. Invite team members via email and assign roles (Admin, Member, Viewer) to ensure secure access control.
+                    </p>
+                    <ul class="step-list">
+                        <li><i class="fa-solid fa-check"></i> Team Member Management</li>
+                        <li><i class="fa-solid fa-check"></i> User Role Display</li>
+                        <li><i class="fa-solid fa-check"></i> Quick Action Shortcuts</li>
+                    </ul>
+                </div>
+                <div class="mockup-frame">
+                    <img src="image1.png" alt="Workspace Setup Screen">
+                </div>
+            </div>
+
+            <div class="step-container reverse">
+                <div class="step-text">
+                    <span class="step-number">Step 02 — Organize</span>
+                    <h3 class="step-title">Structure Your Projects</h3>
+                    <p class="step-desc">
+                        Don't let tasks slip through the cracks. Create Projects and visualize them your way. Switch instantly between Kanban boards for status tracking and Gantt charts for timeline planning.
+                    </p>
+                    <ul class="step-list">
+                        <li><i class="fa-solid fa-check"></i> Drag-and-drop Kanban Board</li>
+                        <li><i class="fa-solid fa-check"></i> Calendar & Timeline Views</li>
+                        <li><i class="fa-solid fa-check"></i> Nested Subtasks & Dependencies</li>
+                    </ul>
+                </div>
+                <div class="mockup-frame">
+                    <img src="image2.png" alt="Kanban Board View">
+                </div>
+            </div>
+
+            <div class="step-container">
+                <div class="step-text">
+                    <span class="step-number">Step 03 — Automate</span>
+                    <h3 class="step-title">Consult Your AI Assistant</h3>
+                    <p class="step-desc">
+                        Click the robot icon in the bottom right to activate CollabAI. Ask it to summarize long comment threads, generate subtasks from a description, or draft project updates.
+                    </p>
+                    <ul class="step-list">
+                        <li><i class="fa-solid fa-check"></i> "Summarize this task" command</li>
+                        <li><i class="fa-solid fa-check"></i> Natural Language Search</li>
+                        <li><i class="fa-solid fa-check"></i> Content Generation</li>
+                    </ul>
+                </div>
+                <div class="mockup-frame" id="ai-assistant-preview">
+                      <img src="image3.png" alt="AI Assistant Chat">
+                </div>
+            </div>
+
+            <div class="step-container reverse">
+                <div class="step-text">
+                    <span class="step-number">Step 04 — Analyze</span>
+                    <h3 class="step-title">Track Performance</h3>
+                    <p class="step-desc">
+                        Use the built-in time tracker on every task. Navigate to the Reports tab to view team velocity, hours logged, and project burn-down charts to keep budgets on track.
+                    </p>
+                    <ul class="step-list">
+                        <li><i class="fa-solid fa-check"></i> Integrated Time Timer</li>
+                        <li><i class="fa-solid fa-check"></i> Exportable Timesheets</li>
+                        <li><i class="fa-solid fa-check"></i> Productivity Heatmaps</li>
+                    </ul>
+                </div>
+                <div class="mockup-frame">
+                      <img src="image4.png" alt="Analytics Dashboard">
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <div class="container">
+            <div class="text-center">
+                <h2 style="font-size: 2rem; margin-bottom: 1rem;">Platform Capabilities</h2>
+            </div>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="icon-box"><i class="fa-solid fa-comments"></i></div>
+                    <h3>Real-Time Chat</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">Stop switching apps. Discuss tasks in threads or use global channels for team announcements.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon-box"><i class="fa-solid fa-file-shield"></i></div>
+                    <h3>Secure File Storage</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">Upload documents directly to tasks. All files are encrypted at rest and in transit.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon-box"><i class="fa-solid fa-mobile-screen"></i></div>
+                    <h3>Mobile Responsive</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">Manage your projects on the go. The interface adapts perfectly to tablets and phones.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="cta-box">
+            <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Ready to optimize your workflow?</h2>
+            <p style="margin-bottom: 2rem; color: rgba(255,255,255,0.8); font-size: 1.1rem;">
+                Join thousands of teams using CollabSpace to build faster.
+            </p>
+            <a href="https://collabspace-ai.up.railway.app" class="btn btn-primary" style="background: white; color: var(--brand-primary-dark);">Create Free Account</a>
+            <p style="margin-top: 1rem; font-size: 0.8rem; opacity: 0.6;">No credit card required • Cancel anytime</p>
+        </div>
+    </div>
+
+    <footer style="text-align: center; padding: 2rem; color: var(--text-muted); font-size: 0.9rem;">
+        <p>&copy; 2026 CollabSpace AI. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const mobileBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = mobileBtn.querySelector('i');
+            if(navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+            } else {
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Close menu when a link is clicked
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileBtn.querySelector('i').classList.remove('fa-xmark');
+                mobileBtn.querySelector('i').classList.add('fa-bars');
+            });
+        });
+    </script>
+
+</body>
+</html>

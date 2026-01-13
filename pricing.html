@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing - CollabSpace AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            /* --- BRAND IDENTITY (Teal) --- */
+            --brand-primary: #0d9488;       /* Teal 600 */
+            --brand-primary-hover: #0f766e; /* Teal 700 */
+            --brand-primary-light: #14b8a6; /* Teal 500 */
+            --brand-primary-dark: #115e59;  /* Teal 800 */
+            
+            --brand-surface: #f0fdfa;       /* Teal 50 */
+            --brand-border: #ccfbf1;        /* Teal 100 */
+            
+            /* --- Neutrals --- */
+            --bg-app: #f8fafc;
+            --bg-card: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --border-light: #e2e8f0;
+
+            /* --- Glassmorphism --- */
+            --glass-bg: rgba(255, 255, 255, 0.7);
+            --glass-border: 1px solid rgba(255, 255, 255, 0.6);
+            --glass-shadow: 0 8px 32px 0 rgba(13, 148, 136, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+        
+        body {
+            background-color: var(--bg-app);
+            color: var(--text-main);
+            background-image: radial-gradient(circle at 50% 0%, rgba(13, 148, 136, 0.1) 0%, transparent 50%);
+            overflow-x: hidden;
+        }
+
+        /* --- Utilities --- */
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 5%; width: 100%; }
+        .text-center { text-align: center; }
+        .text-primary { color: var(--brand-primary); }
+        .btn {
+            display: inline-flex; justify-content: center; align-items: center;
+            padding: 12px 24px; border-radius: 8px; font-weight: 600;
+            text-decoration: none; transition: all 0.2s; border: none; cursor: pointer; width: 100%;
+        }
+        .btn-primary { background: var(--brand-primary); color: white; box-shadow: 0 4px 6px rgba(13, 148, 136, 0.2); }
+        .btn-primary:hover { background: var(--brand-primary-hover); transform: translateY(-2px); }
+        .btn-outline { background: transparent; border: 1px solid var(--brand-border); color: var(--brand-primary-dark); }
+        .btn-outline:hover { background: var(--brand-surface); border-color: var(--brand-primary); }
+        .btn-dark { background: var(--text-main); color: white; }
+        .btn-dark:hover { background: #1e293b; transform: translateY(-2px); }
+
+        /* --- Navigation --- */
+        nav {
+            display: flex; justify-content: space-between; align-items: center; padding: 1rem 5%;
+            position: fixed; width: 100%; top: 0; z-index: 1000;
+            background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-light);
+        }
+        .logo { font-size: 1.5rem; font-weight: 800; color: var(--text-main); display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .logo-img { height: 32px; width: auto; }
+
+        .nav-links { display: flex; align-items: center; }
+        .nav-links a { margin-left: 2rem; text-decoration: none; color: var(--text-muted); font-weight: 500; font-size: 0.95rem; }
+        .nav-links a:hover { color: var(--brand-primary); }
+        
+        /* Button visibility control */
+        .nav-cta { width: auto; padding: 8px 20px; }
+        .mobile-only-btn { display: none; } /* HIDDEN ON DESKTOP */
+        
+        .mobile-menu-btn { display: none; font-size: 1.5rem; cursor: pointer; color: var(--text-main); }
+
+        /* --- Pricing Header --- */
+        .pricing-header { padding: 9rem 0 3rem; text-align: center; }
+        .pricing-header h1 { 
+            font-size: clamp(2rem, 5vw, 3rem); 
+            margin-bottom: 1rem; 
+            color: var(--text-main); 
+            line-height: 1.1;
+        }
+        .pricing-header p { font-size: 1.2rem; color: var(--text-muted); max-width: 600px; margin: 0 auto; padding: 0 1rem; }
+
+        /* --- Toggle Switch --- */
+        .pricing-toggle {
+            display: flex; align-items: center; justify-content: center; gap: 1rem; margin-top: 2rem; flex-wrap: wrap;
+        }
+        .toggle-label { font-weight: 600; color: var(--text-muted); cursor: pointer; }
+        .toggle-label.active { color: var(--text-main); }
+        .switch {
+            position: relative; display: inline-block; width: 50px; height: 26px;
+        }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider {
+            position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0;
+            background-color: var(--border-light); transition: .4s; border-radius: 34px;
+        }
+        .slider:before {
+            position: absolute; content: ""; height: 20px; width: 20px; left: 3px; bottom: 3px;
+            background-color: white; transition: .4s; border-radius: 50%; box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        input:checked + .slider { background-color: var(--brand-primary); }
+        input:checked + .slider:before { transform: translateX(24px); }
+        .discount-badge {
+            background: var(--brand-surface); color: var(--brand-primary); font-size: 0.75rem;
+            padding: 4px 8px; border-radius: 12px; font-weight: 700; border: 1px solid var(--brand-border);
+        }
+
+        /* --- Pricing Cards --- */
+        .pricing-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem; margin: 3rem auto 6rem;
+        }
+        .price-card {
+            background: var(--bg-card); border-radius: 16px; padding: 2rem;
+            border: 1px solid var(--border-light); position: relative;
+            transition: transform 0.3s ease; display: flex; flex-direction: column;
+        }
+        .price-card:hover { transform: translateY(-5px); border-color: var(--brand-primary-light); }
+        
+        .price-card.popular {
+            border: 2px solid var(--brand-primary);
+            box-shadow: 0 20px 40px -10px rgba(13, 148, 136, 0.15);
+            z-index: 2;
+        }
+        .popular-badge {
+            position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+            background: var(--brand-primary); color: white; padding: 4px 16px;
+            border-radius: 20px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase;
+        }
+        
+        .plan-name { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .plan-desc { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 2rem; min-height: 40px; }
+        .price { font-size: 2.5rem; font-weight: 800; color: var(--text-main); letter-spacing: -1px; }
+        .price span { font-size: 0.9rem; color: var(--text-muted); font-weight: 400; }
+        
+        .features-list { list-style: none; margin: 2rem 0; flex-grow: 1; }
+        .features-list li { margin-bottom: 0.8rem; display: flex; gap: 8px; font-size: 0.9rem; color: var(--text-main); align-items: flex-start; }
+        .features-list li i { color: var(--brand-primary); margin-top: 4px; flex-shrink: 0; }
+        .features-list li.disabled { color: var(--text-muted); opacity: 0.6; }
+
+        /* --- Comparison Table --- */
+        .comparison-section { padding: 4rem 0; background: white; border-top: 1px solid var(--border-light); }
+        .table-container { overflow-x: auto; margin-top: 3rem; -webkit-overflow-scrolling: touch; }
+        table { width: 100%; border-collapse: collapse; min-width: 800px; }
+        th, td { padding: 1.2rem; text-align: left; border-bottom: 1px solid var(--border-light); }
+        th { font-weight: 700; color: var(--text-main); }
+        td { color: var(--text-muted); font-size: 0.95rem; }
+        td:first-child { width: 30%; font-weight: 600; color: var(--text-main); position: sticky; left: 0; background: white; }
+        td.check { text-align: center; font-size: 1.1rem; }
+        .fa-check { color: var(--brand-primary); }
+        .fa-minus { color: var(--border-light); }
+
+        /* --- FAQ Section CSS --- */
+        .faq-section { padding: 6rem 0; }
+        .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-top: 3rem; }
+        .faq-item h3 { font-size: 1.1rem; margin-bottom: 0.5rem; color: var(--text-main); font-weight: 600; }
+        .faq-item p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
+
+        /* --- RESPONSIVE MEDIA QUERIES --- */
+        @media (max-width: 900px) {
+            .pricing-header { padding-top: 7rem; }
+            .pricing-grid { grid-template-columns: repeat(2, 1fr); }
+            .faq-grid { grid-template-columns: 1fr; gap: 2rem; }
+        }
+        
+        @media (max-width: 768px) {
+             /* Mobile Navigation */
+             .mobile-menu-btn { display: block; }
+             .nav-links { 
+                 display: none; 
+                 position: absolute; top: 70px; left: 0; width: 100%; 
+                 background: white; flex-direction: column; 
+                 align-items: center; padding: 2rem 0; 
+                 border-bottom: 1px solid var(--border-light); 
+                 box-shadow: 0 10px 20px rgba(0,0,0,0.1); gap: 1.5rem;
+             }
+             .nav-links.active { display: flex; }
+             .nav-links a { margin: 0; font-size: 1.1rem; }
+             
+             .nav-cta { display: none; } /* Hide Header button on mobile */
+             
+             .mobile-only-btn { 
+                 display: inline-block; /* Show Menu button on mobile */
+                 width: auto; 
+                 padding: 10px 30px; 
+                 margin-top: 10px; 
+             }
+             
+             .pricing-header { padding: 7rem 0 2rem; }
+             .pricing-grid { grid-template-columns: 1fr; max-width: 400px; margin-left: auto; margin-right: auto; }
+             .plan-desc { min-height: auto; }
+             .faq-section { padding: 4rem 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index" class="logo">
+            <img src="Gemini.webp" alt="CollabSpace AI Logo" class="logo-img">
+            CollabSpace AI
+        </a>
+        
+        <div class="mobile-menu-btn"><i class="fa-solid fa-bars"></i></div>
+
+        <div class="nav-links">
+            <a href="index#features">Features</a>
+            <a href="hiw">How It Works</a>
+            <a href="#" style="color: var(--brand-primary);">Pricing</a>
+            <a href="https://collabspace-ai.vercel.app">Demo</a>
+            
+            <a href="https://collabspace-ai.up.railway.app" class="btn btn-primary mobile-only-btn">Sign Up Free</a>
+        </div>
+        
+        <a href="https://collabspace-ai.up.railway.app" class="btn btn-primary nav-cta">Sign Up Free</a>
+    </nav>
+
+    <header class="pricing-header">
+        <div class="container">
+            <h1>Plans for teams of all sizes</h1>
+            <p>Simple pricing. Powerful features. Switch plans anytime.</p>
+            
+            <div class="pricing-toggle">
+                <span class="toggle-label active">Monthly</span>
+                <label class="switch">
+                    <input type="checkbox" id="billingToggle" onchange="togglePrices()">
+                    <span class="slider"></span>
+                </label>
+                <span class="toggle-label">Yearly</span>
+                <span class="discount-badge">Discount applied</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="pricing-grid">
+            
+            <div class="price-card">
+                <div class="plan-name">Starter</div>
+                <div class="plan-desc">For individuals organizing tasks.</div>
+                <div class="price">$0<span>/mo</span></div>
+                
+                <ul class="features-list">
+                    <li><i class="fa-solid fa-check"></i> Unlimited Tasks</li>
+                    <li><i class="fa-solid fa-check"></i> 1 Workspace</li>
+                    <li><i class="fa-solid fa-check"></i> <strong>0.2 GB</strong> File Storage</li>
+                    <li><i class="fa-solid fa-check"></i> Basic AI (5 queries/day)</li>
+                    <li class="disabled"><i class="fa-solid fa-xmark"></i> Integrations</li>
+                </ul>
+                <a href="https://collabspace-ai.up.railway.app" class="btn btn-outline">Get Started</a>
+            </div>
+
+            <div class="price-card popular">
+                <div class="popular-badge">Best Value</div>
+                <div class="plan-name">Pro</div>
+                <div class="plan-desc">For growing teams needing AI.</div>
+                <div class="price" id="pro-price">$10<span>/user/mo</span></div>
+                
+                <ul class="features-list">
+                    <li><i class="fa-solid fa-check"></i> <strong>Everything in Starter</strong></li>
+                    <li><i class="fa-solid fa-check"></i> Unlimited Workspaces</li>
+                    <li><i class="fa-solid fa-check"></i> <strong>5 GB</strong> File Storage</li>
+                    <li><i class="fa-solid fa-check"></i> Advanced AI (Unlimited)</li>
+                    <li><i class="fa-solid fa-check"></i> Integrations (Slack/GitHub)</li>
+                </ul>
+                <a href="pay" class="btn btn-primary">Start 14-Day Free Trial</a>
+            </div>
+
+            <div class="price-card" style="border-color: var(--brand-primary-dark);">
+                <div class="plan-name" style="color: var(--brand-primary-dark);">Custom Pro</div>
+                <div class="plan-desc">For power users needing more capacity.</div>
+                <div class="price" id="custom-price">$25<span>/user/mo</span></div>
+                
+                <ul class="features-list">
+                    <li><i class="fa-solid fa-check"></i> <strong>Everything in Pro</strong></li>
+                    <li><i class="fa-solid fa-check"></i> <strong>100 GB</strong> File Storage</li>
+                    <li><i class="fa-solid fa-check"></i> Priority Email Support</li>
+                    <li><i class="fa-solid fa-check"></i> Advanced Analytics</li>
+                    <li><i class="fa-solid fa-check"></i> 30-Day Activity History</li>
+                </ul>
+                <a href="pay" class="btn btn-outline" style="border-color: var(--brand-primary-dark); color: var(--brand-primary-dark);">Upgrade to Custom</a>
+            </div>
+
+            <div class="price-card" style="background: #f8fafc;">
+                <div class="plan-name">Enterprise</div>
+                <div class="plan-desc">Security & control for organizations.</div>
+                <div class="price">Contact<span>&nbsp;</span></div>
+                
+                <ul class="features-list">
+                    <li><i class="fa-solid fa-check"></i> <strong>Everything in Custom</strong></li>
+                    <li><i class="fa-solid fa-check"></i> Unlimited Storage</li>
+                    <li><i class="fa-solid fa-check"></i> SSO (Okta/SAML)</li>
+                    <li><i class="fa-solid fa-check"></i> Audit Logs</li>
+                    <li><i class="fa-solid fa-check"></i> Dedicated Success Manager</li>
+                </ul>
+                <a href="collabspaceAi@gmail.com" class="btn btn-dark">Contact Sales</a>
+            </div>
+
+        </div>
+    </div>
+
+    <section class="comparison-section">
+        <div class="container">
+            <h2 class="text-center">Feature Comparison</h2>
+            
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="padding-left: 0;">Features</th>
+                            <th class="text-center">Starter</th>
+                            <th class="text-center" style="color: var(--brand-primary);">Pro</th>
+                            <th class="text-center" style="color: var(--brand-primary-dark);">Custom Pro</th>
+                            <th class="text-center">Enterprise</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Storage</td>
+                            <td class="check">0.2 GB</td>
+                            <td class="check" style="font-weight: 700; color: var(--brand-primary);">5 GB</td>
+                            <td class="check" style="font-weight: 700;">100 GB</td>
+                            <td class="check">Unlimited</td>
+                        </tr>
+                        <tr>
+                            <td>Projects</td>
+                            <td class="check">3</td>
+                            <td class="check">Unlimited</td>
+                            <td class="check">Unlimited</td>
+                            <td class="check">Unlimited</td>
+                        </tr>
+                        <tr>
+                            <td>AI Assistant</td>
+                            <td class="check">5/day</td>
+                            <td class="check">Unlimited</td>
+                            <td class="check">Unlimited + Context</td>
+                            <td class="check">Custom Models</td>
+                        </tr>
+                        <tr>
+                            <td>Support</td>
+                            <td class="check">Community</td>
+                            <td class="check">Standard</td>
+                            <td class="check">Priority Email</td>
+                            <td class="check">24/7 Phone</td>
+                        </tr>
+                         <tr>
+                            <td>Audit Logs</td>
+                            <td class="check"><i class="fa-solid fa-minus"></i></td>
+                            <td class="check"><i class="fa-solid fa-minus"></i></td>
+                            <td class="check"><i class="fa-solid fa-minus"></i></td>
+                            <td class="check"><i class="fa-solid fa-check"></i></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq-section">
+        <div class="container">
+            <h2 class="text-center">Frequently Asked Questions</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h3>Can I change plans later?</h3>
+                    <p>Absolutely. You can upgrade or downgrade your plan at any time. Prorated credits will be applied to your account immediately.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>What is the "Custom Pro" plan?</h3>
+                    <p>It's designed for power users who need significantly more storage (100 GB) and priority support without the complexity of an Enterprise agreement.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Is there a free trial?</h3>
+                    <p>Yes, we offer a 14-day free trial for both the Pro and Custom Pro plans. No credit card is required to start your trial.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>What payment methods do you accept?</h3>
+                    <p>We accept all major credit cards (Visa, Mastercard, Amex) and PayPal. For Enterprise plans, we also support invoice billing.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer style="background: var(--text-main); color: white; padding: 4rem 0; text-align: center;">
+        <div class="container">
+            <h2 style="font-size: 2rem; margin-bottom: 2rem;">Ready to get started?</h2>
+            <a href="https://collabspace-ai.up.railway.app" class="btn btn-primary" style="width: auto; padding: 12px 36px;">Create Free Account</a>
+            <p style="margin-top: 3rem; color: var(--text-muted); font-size: 0.9rem;">&copy; 2026 CollabSpace AI. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Toggle Pricing Logic
+        function togglePrices() {
+            const isYearly = document.getElementById('billingToggle').checked;
+            const proPrice = document.getElementById('pro-price');
+            const customPrice = document.getElementById('custom-price');
+
+            if (isYearly) {
+                // Yearly Pricing
+                proPrice.innerHTML = '$8<span>/user/mo</span>';
+                customPrice.innerHTML = '$20<span>/user/mo</span>';
+            } else {
+                // Monthly Pricing
+                proPrice.innerHTML = '$10<span>/user/mo</span>';
+                customPrice.innerHTML = '$25<span>/user/mo</span>';
+            }
+        }
+
+        // Mobile Menu Logic
+        const mobileBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = mobileBtn.querySelector('i');
+            if(navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+            } else {
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Close menu on link click
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileBtn.querySelector('i').classList.remove('fa-xmark');
+                mobileBtn.querySelector('i').classList.add('fa-bars');
+            });
+        });
+    </script>
+</body>
+</html>
